@@ -61,6 +61,11 @@ def test_unknown_command_reprompts():
     assert r["session_state"] == {"step": 2}
 
 
+def test_not_ready_stops_instead_of_moving_on():
+    r = say("не готова", 2)
+    assert r["response"]["end_session"] is True
+
+
 def test_lost_state_restarts_from_welcome():
     r = index.handler(make_event("дальше"))
     assert r["session_state"] == {"step": 0}
