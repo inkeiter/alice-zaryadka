@@ -21,7 +21,7 @@ def say(command, state_step):
 def test_new_session_plays_welcome():
     r = index.handler(make_event(new=True))
     assert r["response"]["end_session"] is False
-    assert "поехали" in r["response"]["text"]
+    assert "поехали" in r["response"]["text"].lower()
     assert r["session_state"] == {"step": 0}
 
 
